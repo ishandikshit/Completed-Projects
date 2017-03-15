@@ -1,0 +1,70 @@
+Logic_Age_Verbal_Start intelligent devils  solve the age problem for me
+Logic_Age_Verbal_Start intelligent devils  Solve a Question
+Logic_Age_Verbal_Start intelligent devils Help me with a Question
+Logic_Age_Verbal_Start intelligent devils Solve a question for me
+Logic_Age_Verbal_Start Hi intelligent devils 
+
+Logic_Age_Verbal_Statement {Main_User} is {Relationship} than {Secondary_User}
+Logic_Age_Verbal_Statement {Main_User} is {Relationship} to {Secondary_User}
+Logic_Age_Verbal_Statement {Main_User} is {Relationship} from {Secondary_User}
+
+Logic_Age_Verbal_Question_Relation who is {Relation}
+Logic_Age_Verbal_Question_Relation who is the {Relation}
+Logic_Age_Verbal_Question_Relation Out of these who is {Relation}
+Logic_Age_Verbal_Question_Relation Can you tell me who is {Relation}
+Logic_Age_Verbal_Question_Relation which one is {Relation}
+
+Logic_Age_Verbal_Question_Name what is {User}
+Logic_Age_Verbal_Question_Name what is rank of {User}
+Logic_Age_Verbal_Question_Name what is position of {User}
+Logic_Age_Verbal_Question_Name Status of {User}
+Logic_Age_Verbal_Question_Name Standing of {User}
+
+Logic_Arthimetic_Statement_Simple {Name} has {Quantity} {Things}
+Logic_Arthimetic_Statement_Simple {Name} found {Quantity} {Things}
+Logic_Arthimetic_Statement_Simple {Name} picked {Quantity} {Things} from the table 
+Logic_Arthimetic_Statement_Simple {Name} picked {Quantity} {Things} from the tree
+Logic_Arthimetic_Statement_Simple {Name} picked {Quantity}	{Things} 
+Logic_Arthimetic_Statement_Simple {Name} found {Quantity} {Things} on the beach
+Logic_Arthimetic_Statement_Simple {Name} had {Quantity} {Things} in her bank
+Logic_Arthimetic_Statement_Simple {Name} grew {Quantity} {Things} 
+Logic_Arthimetic_Statement_Simple {Name} has {Quantity} {Things}
+Logic_Arthimetic_Statement_Simple {Name} has {Quantity} {Things} 
+
+Logic_Arthimetic_Statement_Exchange {Main_User} took {Quantity} {Things} from {Secondary_User}
+Logic_Arthimetic_Statement_Exchange {Secondary_User} give {Quantity} {Things} to {Main_User}
+Logic_Arthimetic_Statement_Exchange {Quantity} {Things} are transrfered from {Secondary_User} to {Main_User}
+Logic_Arthimetic_Statement_Exchange {Main_User} got {Quantity} {Things} from {Secondary_User}
+Logic_Arthimetic_Statement_Exchange {Main_User} has {Quantity} {Things} which are given by {Secondary_User}
+Logic_Arthimetic_Statement_Exchange {Secondary_User} gave {Quantity} {Things} to {Main_User}
+Logic_Arthimetic_Statement_Exchange {Main_User} rented {Quantity} {Things} from {Secondary_User}
+Logic_Arthimetic_Statement_Exchange {Main_User} brought {Quantity} {Things} from {Secondary_User}
+Logic_Arthimetic_Statement_Exchange {Main_User} took {Quantity} {Things} from {Secondary_User}
+
+Logic_Arthimetic_Statement_Relative_Less   {Main_User} has {Quantity} less {Things}  than {Secondary_User}
+Logic_Arthimetic_Statement_Relative_Less   no of {Things} of {Main_User} is {Quantity} less than {Secondary_User} 
+Logic_Arthimetic_Statement_Relative_Less   {Main_User} got {Quantity} {Things} less than {Secondary_User}
+Logic_Arthimetic_Statement_Relative_Less   {Main_User} has {Quantity} fewer {Things}  than {Secondary_User}
+Logic_Arthimetic_Statement_Relative_Less   no of {Things} of {Main_User} is {Quantity} fewer than {Secondary_User} 
+Logic_Arthimetic_Statement_Relative_Less   {Main_User} got {Quantity} {Things} fewer than {Secondary_User}
+
+Logic_Arthimetic_Statement_Relative_More   {Main_User} has {Quantity} more {Things} than {Secondary_User}
+Logic_Arthimetic_Statement_Relative_More   no of {Things}  of {Main_User} is {Quantity} more than {Secondary_User} 
+Logic_Arthimetic_Statement_Relative_More   {Main_User} got {Quantity} {Things}  more than {Secondary_User}
+
+Logic_Arthimetic_Question_By_Logic who has {Logic} number of {Things}
+Logic_Arthimetic_Question_By_Logic who has {Logic} number of {Things} among all
+
+Logic_Arthimetic_Question_By_Name How many {Things} {Name} has 
+Logic_Arthimetic_Question_By_Name No of {Things} with {Name}
+Logic_Arthimetic_Question_By_Name Total no of {Things} with {Name}
+
+Logic_Arthimetic_Question_Thing_All Total no of {Things}
+Logic_Arthimetic_Question_Thing_All How man {Things} are there
+Logic_Arthimetic_Question_Thing_All How many {Things} are there in total
+Logic_Arthimetic_Question_Thing_All sum of all the {Things}
+Logic_Arthimetic_Question_Thing_All summition of all the {Things}
+Logic_Arthimetic_Question_Thing_All what is total no of {Things}
+Logic_Arthimetic_Question_Thing_All what is the count of {Things}
+
+Logic_Age_Verbal_End Quit the program

@@ -8,7 +8,13 @@ http://amzn.to/1LGWsLG
 """
 
 from __future__ import print_function
+from scipy.misc import derivative
 
+import decimal
+import scipy.integrate as integrate
+import boto3
+
+DDB = boto3.resource('dynamodb').Table('mathcontext_1')
 
 # --------------- Helpers that build all of the responses ----------------------
 
@@ -43,6 +49,146 @@ def build_response(session_attributes, speechlet_response):
 
 # --------------- Functions that control the skill's behavior ------------------
 
+def solveMath(intent, session):
+    session_attributes = {}
+    card_title = "Welcome"
+    ll = intent['slots']['LL']['value']
+    ul = intent['slots']['UL']['value']
+
+    if ul is None:
+        ul = float('inf')
+    if ll is None:
+        ll = float('-inf')
+
+    compute = intent['slots']['Compute']['value']
+    fn = intent['slots']['function']['value']
+    ll = float(ll)
+    ul = float(ul)
+
+    def f(x):
+        n=1
+        m=1
+        a=0
+        b=0
+        c=1
+        d=1
+        flag = False
+
+        list = fn.split()
+        if list[0]=='x':
+            flag=True
+        #print (list)
+        for i in range (1,len(list)):
+            if(list[i]==' '):
+                continue
+            if list[i] == 'x':
+                flag = True
+                if len(list[i-1]) == 1:
+                    n = n*int(list[i-1])
+            if (list[i] == 'plus'):
+                if(len(list[i-1])==1 and list[i-1] != 'x'):
+                    a=a+int(list[i-1])
+                if(len(list[i+1])==1 and list[i+1] != 'x'):
+                    a=a+int(list[i+1])
+
+            if (list[i] == 'minus'):
+                if(len(list[i-1])==1 and list[i-1] != 'x'):
+                    b=b-int(list[i-1])
+                if(len(list[i+1])==1 and list[i+1] != 'x'):
+                    b=b+int(list[i+1])
+
+            if (list[i] == 'multiply'):
+                if(len(list[i-1])==1 and list[i-1] != 'x'):
+                    n=n*int(list[i-1])
+                if(len(list[i+1])==1 and list[i+1] != 'x'):
+                    n=n*int(list[i+1])
+
+            if(list[i]=='square' or list[i]=='squared'):
+                m=m*2
+            if(list[i]=='cube'):
+                m=m*3
+            if(list[i]=='power'):
+                if(len(list[i+1])==1):
+                    m=m*int(list[i+1])
+                if i+2>=len(list):
+                    continue
+                else:
+                    if list[i+2]=='plus':
+                        a=a-int(list[i+1])
+                    if list[i+2]=='minus':
+                        b=b-int(list[i+1])
+                    if list[i+2]=='multiply' and int(list[i+1])!=0:
+                        n=n/int(list[i+1])
+            
+    #print (n, m, a, b, c, d)
+        if flag:
+            return n*x**m+a-b*c/d
+        else:
+            return n*0**m+a-b
+
+    
+    #solve integration
+    if compute in ["integration", "integral", "integration"]:
+        result = round(integrate.quad(f, ll, ul)[0],3);
+        
+    #solve differentiation
+    elif compute in ["differentiate", "derivative", "differentiation"]:
+        result = round(derivative(f,ul,dx=1e-6) - derivative(f,ll,dx=1e-6),3)
+
+
+    item = {'Item':{'prevRes': decimal.Decimal(result)}}
+    DDB.put_item(**item)
+    
+
+  #  session_attributes['prevResult']=result
+    result = "The devils have found the answer of " + str(compute) + ". And it is " + str(result)
+    speech_output = result
+    should_end_session = False
+    reprompt_text="I almost heard it. Can you try again?"
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+#fn ="2 plus x power 3 multiply 1"
+
+def contextCompute(intent, session):
+    session_attributes = {}
+    card_title = "Context aware computations"
+     #get
+    dbitem = {'Item':{'prevRes'}}
+
+    x = float(DDB.get_item(**dbitem))
+
+    DDB.delete_item('Item':{'prevRes':decimal.Decimal(x)})
+
+#    x = float(session['attributes']['prevResult'])
+    y = float(intent['slots']['Value']['value'])
+    math = intent['slots']['Math']['value']
+
+    if math=='add' or math=='increase':
+        result = x+y
+    elif math=='subtract' or math=='deduct' or math=='decrease':
+        result = x-y
+    elif math=='multiply':
+        result = x*y
+    elif math=='divide' and y!=0:
+        result = x/y
+    elif math=='divide' and y==0:
+        result = 'not defined'
+
+    item = {'Item':{'prevRes': decimal.Decimal(result)}}
+    DDB.put_item(**item)
+    
+
+    #session_attributes['prevResult']=result
+    speech_output = str(result)
+    speech_output = "Devil says the new result is "+speech_output
+    reprompt_text = "Can you say that again?"
+    should_end_session = False
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
 def get_welcome_response():
     """ If we wanted to initialize the session to have some attributes we could
     add those here
@@ -71,58 +217,6 @@ def handle_session_end_request():
     return build_response({}, build_speechlet_response(
         card_title, speech_output, None, should_end_session))
 
-
-def create_favorite_color_attributes(favorite_color):
-    return {"favoriteColor": favorite_color}
-
-
-def set_color_in_session(intent, session):
-    """ Sets the color in the session and prepares the speech to reply to the
-    user.
-    """
-
-    card_title = intent['name']
-    session_attributes = {}
-    should_end_session = False
-
-    if 'Color' in intent['slots']:
-        favorite_color = intent['slots']['Color']['value']
-        session_attributes = create_favorite_color_attributes(favorite_color)
-        speech_output = "I now know your favorite color is " + \
-                        favorite_color + \
-                        ". You can ask me your favorite color by saying, " \
-                        "what's my favorite color?"
-        reprompt_text = "You can ask me your favorite color by saying, " \
-                        "what's my favorite color?"
-    else:
-        speech_output = "I'm not sure what your favorite color is. " \
-                        "Please try again."
-        reprompt_text = "I'm not sure what your favorite color is. " \
-                        "You can tell me your favorite color by saying, " \
-                        "my favorite color is red."
-    return build_response(session_attributes, build_speechlet_response(
-        card_title, speech_output, reprompt_text, should_end_session))
-
-
-def get_color_from_session(intent, session):
-    session_attributes = {}
-    reprompt_text = None
-
-    if session.get('attributes', {}) and "favoriteColor" in session.get('attributes', {}):
-        favorite_color = session['attributes']['favoriteColor']
-        speech_output = "Your favorite color is " + favorite_color + \
-                        ". Goodbye."
-        should_end_session = True
-    else:
-        speech_output = "I'm not sure what your favorite color is. " \
-                        "You can say, my favorite color is red."
-        should_end_session = False
-
-    # Setting reprompt_text to None signifies that we do not want to reprompt
-    # the user. If the user does not respond or says something that is not
-    # understood, the session will end.
-    return build_response(session_attributes, build_speechlet_response(
-        intent['name'], speech_output, reprompt_text, should_end_session))
 
 
 # --------------- Events ------------------
@@ -155,14 +249,10 @@ def on_intent(intent_request, session):
     intent_name = intent_request['intent']['name']
 
     # Dispatch to your skill's intent handlers
-    if intent_name == "MyColorIsIntent":
-        return set_color_in_session(intent, session)
-    elif intent_name == "WhatsMyColorIntent":
-        return get_color_from_session(intent, session)
-    elif intent_name == "AMAZON.HelpIntent":
-        return get_welcome_response()
-    elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
-        return handle_session_end_request()
+    if intent_name=="GetValue":
+        return solveMath(intent, session)
+    if intent_name=="MakeContextAware":
+        return contextCompute(intent, session)
     else:
         raise ValueError("Invalid intent")
 

@@ -1,0 +1,172 @@
+CUSTOM SLOT TYPES
+LIST_OF_BASIC_MATH 
+add
+increase
+deduct
+decrease
+subtract
+multiply
+divide
+
+
+LIST_OF_MATH_FUNCTIONS
+integrate
+integral
+integration
+differentiate
+derivative
+differentiation
+
+
+
+LIST_OF_STRINGS
+x 
+x square 
+x plus 2
+x plus 3
+x plus 4
+x plus 5
+x square plus 3
+x minus 2
+x minus 3
+x minus 4
+x minus 5
+x square minus 3 
+x square minus 3 plus 2
+x multiply 2
+x multiply 4
+x multiply 5
+x square multiply 3 
+x square multiply 3 plus 2
+x cube multiply 3 plus 4
+x cube multiply 4 plus 5 minus 3 
+x square plus 4
+x divide 2
+x divide 3
+x divide 4
+x divide 5
+x square divide 3 
+x square divide 3 plus 2
+x cube divide 3 plus 4
+x cube divide 4 plus 5 minus 3
+x cube 2
+x cube 3
+x cube 4
+x cube 5
+x square cube 3 
+x square cube 3 plus 2
+x cube 3 plus 4
+x cube 4 plus 5 minus 3
+5 x
+x power 2
+x power 3
+x power 4
+x power 5
+AMAZON.NUMBER
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sample Utterances * 
+GetValue {Compute} of {function} from lower limit {LL} to Upper limit {UL}
+GetValue {Compute} of {function} between {LL} and {UL}
+GetValue {Compute} of {function} between lower limit {LL} and upper limit {UL}
+GetValue {Compute} of {function} from {LL} to {UL}
+GetValue {Compute} of {function} from {LL} two {UL}
+GetValue ask {Compute} of {function} from lower limit {LL} to Upper limit {UL}
+GetValue ask {Compute} of {function} between {LL} and {UL}
+GetValue ask {Compute} of {function} between lower limit {LL} and upper limit {UL}
+GetValue ask {Compute} of {function} from {LL} to {UL}
+GetValue ask {Compute} of {function} from {LL} two {UL}
+GetValue devils what is {Compute} of {function} from lower limit {LL} to Upper limit {UL}
+GetValue devils what is {Compute} of {function} between {LL} and {UL}
+GetValue devils what is {Compute} of {function} between lower limit {LL} and upper limit {UL}
+GetValue devils what is {Compute} of {function} from {LL} to {UL}
+GetValue devils what is {Compute} of {function} from {LL} two {UL}
+GetValue ask devils {Compute} of {function} from lower limit {LL} to Upper limit {UL}
+GetValue ask devils {Compute} of {function} between {LL} and {UL}
+GetValue ask devils {Compute} of {function} between lower limit {LL} and upper limit {UL}
+GetValue ask devils {Compute} of {function} from {LL} to {UL}
+GetValue ask devils {Compute} of {function} from {LL} two {UL}
+GetValue what is {Compute} of {function} from lower limit {LL} to Upper limit {UL}
+GetValue what is {Compute} of {function} between {LL} and {UL}
+GetValue what is {Compute} of {function} between lower limit {LL} and upper limit {UL}
+GetValue what is {Compute} of {function} from {LL} to {UL}
+GetValue what is {Compute} of {function} from {LL} two {UL}
+
+
+MakeContextAware {Math} previous results by {Value}
+MakeContextAware {Math} {Value} to previous results
+MakeContextAware {Math} {Value} from previous results
+MakeContextAware {Math} {Value} with previous results
+MakeContextAware {Math} {Value} to previous results
+MakeContextAware {Math} {Value} to previous results
+MakeContextAware {Math} {Value} to previous results
+MakeContextAware {Math} previous results by {Value}
+MakeContextAware devils {Math} {Value} to previous results
+MakeContextAware devils {Math} {Value} from previous results
+MakeContextAware devils {Math} {Value} with previous results
+MakeContextAware devils {Math} {Value} to previous results
+MakeContextAware devils {Math} {Value} to previous results
+MakeContextAware devils {Math} {Value} to previous results
+MakeContextAware devils {Math} previous results by {Value}
+
+
+MakeContextAware {Math} previous result by {Value}
+MakeContextAware {Math} {Value} to previous result
+MakeContextAware {Math} {Value} from previous result
+MakeContextAware {Math} {Value} with previous result
+MakeContextAware {Math} {Value} to previous result
+MakeContextAware {Math} {Value} to previous result
+MakeContextAware {Math} {Value} to previous result
+MakeContextAware {Math} previous result by {Value}
+MakeContextAware devils {Math} {Value} to previous result
+MakeContextAware devils {Math} {Value} from previous result
+MakeContextAware devils {Math} {Value} with previous result
+MakeContextAware devils {Math} {Value} to previous result
+MakeContextAware devils {Math} {Value} to previous result
+MakeContextAware devils {Math} {Value} to previous result
+MakeContextAware devils {Math} previous result by {Value}
+
+MakeContextAware {Math} previous value by {Value}
+MakeContextAware {Math} {Value} to previous value
+MakeContextAware {Math} {Value} from previous value
+MakeContextAware {Math} {Value} with previous value
+MakeContextAware {Math} {Value} to previous value
+MakeContextAware {Math} {Value} to previous value
+MakeContextAware {Math} {Value} to previous value
+MakeContextAware {Math} previous value by {Value}
+MakeContextAware devils {Math} {Value} to previous value
+MakeContextAware devils {Math} {Value} from previous value
+MakeContextAware devils {Math} {Value} with previous value
+MakeContextAware devils {Math} {Value} to previous value
+MakeContextAware devils {Math} {Value} to previous value
+MakeContextAware devils {Math} {Value} to previous value
+MakeContextAware devils {Math} previous value by {Value}
+
+

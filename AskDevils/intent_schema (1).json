@@ -1,0 +1,41 @@
+{
+  "intents": [
+    {
+      "intent": "GetValue",
+      "slots": [
+        {
+          "name": "Compute",
+          "type": "LIST_OF_MATH_FUNCTIONS"
+        },
+        {
+        	"name": "function",
+          	"type" : "LIST_OF_STRINGS"
+        },
+        {
+        	"name": "LL",
+          	"type" : "AMAZON.NUMBER"
+        },
+        {
+        	"name": "UL",
+          	"type" : "AMAZON.NUMBER"
+        }
+       ]
+    },
+    {
+    "intent":"MakeContextAware",
+     "slots": [
+        {
+          "name": "Math",
+          "type": "LIST_OF_BASIC_MATH"
+        },
+        {
+        	"name": "Value",
+          	"type" : "AMAZON.NUMBER"
+        }       
+     ]
+      
+    }
+    
+    
+  ]   
+}

@@ -1,0 +1,173 @@
+{
+  "intents": [
+    {
+      "intent": "Logic_Age_Verbal_Start"
+    },
+    {
+      "intent": "Logic_Age_Verbal_End"
+    },
+    {
+      "intent": "Logic_Age_Verbal_Statement",
+      "slots": [
+        {
+          "name": "Main_User",
+          "type": "Age_Verbal__List_of_Names"
+        },
+        {
+          "name": "Relationship",
+          "type": "Age_Verbal__List_of_Relationship"
+        },
+        {
+          "name": "Secondary_User",
+          "type": "Age_Verbal__List_of_Names"
+        }
+      ]
+    },
+    {
+      "intent": "Logic_Age_Verbal_Question_Relation",
+      "slots": [
+        {
+          "name": "Relation",
+          "type": "Age_Verbal__List_of_Relation_Priority"
+        }
+      ]
+    },
+    {
+      "intent": "Logic_Age_Verbal_Question_Name",
+      "slots": [
+        {
+          "name": "User",
+          "type": "Age_Verbal__List_of_Names"
+        }
+      ]
+    },
+    {
+      "intent": "Logic_Age_Verbal_Statement_Priority",
+      "slots": [
+        {
+          "name": "User",
+          "type": "Age_Verbal__List_of_Names"
+        },
+        {
+          "name": "Relation",
+          "type": "Age_Verbal__List_of_Relation_Priority"
+        }
+      ]
+    },
+    {
+      "intent": "Logic_Arthimetic_Statement_Simple",
+      "slots": [
+        {
+          "name": "Name",
+          "type": "Age_Verbal__List_of_Names"
+        },
+        {
+          "name": "Things",
+          "type": "Logic_Arthimetic__List_of_Things"
+        },
+        {
+          "name": "Quantity",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    },
+    {
+      "intent": "Logic_Arthimetic_Statement_Exchange",
+      "slots": [
+        {
+          "name": "Main_User",
+          "type": "Age_Verbal__List_of_Names"
+        },
+        {
+          "name": "Quantity",
+          "type": "AMAZON.NUMBER"
+        },
+        {
+          "name": "Secondary_User",
+          "type": "Age_Verbal__List_of_Names"
+        },
+        {
+          "name": "Things",
+          "type": "Logic_Arthimetic__List_of_Things"
+        }
+      ]
+    },
+    {
+      "intent": "Logic_Arthimetic_Question_Thing_All",
+      "slots": [
+        {
+          "name": "Things",
+          "type": "Logic_Arthimetic__List_of_Things"
+        }
+      ]
+    },
+    {
+      "intent": "Logic_Arthimetic_Question_By_Name",
+      "slots": [
+        {
+          "name": "Things",
+          "type": "Logic_Arthimetic__List_of_Things"
+        },
+        {
+          "name": "Name",
+          "type": "Age_Verbal__List_of_Names"
+        }
+      ]
+    },
+    {
+      "intent": "Logic_Arthimetic_Question_By_Logic",
+      "slots": [
+        {
+          "name": "Logic",
+          "type": "Logic_Arthimetic__List_of_Logic"
+        },
+        {
+          "name": "Things",
+          "type": "Logic_Arthimetic__List_of_Things"
+        }
+      ]
+    },
+    {
+      "intent": "Logic_Arthimetic_Statement_Relative_More",
+      "slots": [
+        {
+          "name": "Main_User",
+          "type": "Age_Verbal__List_of_Names"
+        },
+        {
+          "name": "Quantity",
+          "type": "AMAZON.NUMBER"
+        },
+        {
+          "name": "Secondary_User",
+          "type": "Age_Verbal__List_of_Names"
+        },
+        {
+          "name": "Things",
+          "type": "Logic_Arthimetic__List_of_Things"
+        }
+      ]
+    },
+    {
+      "intent": "Logic_Arthimetic_Statement_Relative_Less",
+      "slots": [
+        {
+          "name": "Main_User",
+          "type": "Age_Verbal__List_of_Names"
+        },
+        {
+          "name": "Quantity",
+          "type": "AMAZON.NUMBER"
+        },
+        {
+          "name": "Secondary_User",
+          "type": "Age_Verbal__List_of_Names"
+        },
+        {
+          "name": "Things",
+          "type": "Logic_Arthimetic__List_of_Things"
+        }
+      ]
+    }
+  ]
+}
