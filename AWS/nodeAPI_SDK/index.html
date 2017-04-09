@@ -1,0 +1,93 @@
+<html>
+<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+		<script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+	    <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+	    <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+	    <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+	    <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+	    <script type="text/javascript" src="lib/url-template/url-template.js"></script>
+	    <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+	    <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+	    <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+	    <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+	    <script type="text/javascript" src="apigClient.js"></script>
+</head>
+	<body>
+		<h2>A</h2>
+		<form>
+		<ul>
+			<li><label>S. No. </label><input type="text" name="sno" placeholder="S. No." /></li>
+			<li>
+				<input type="submit" name="Submit" />
+			</li>
+		</ul>
+		</form>
+		<div id="results">
+			<canvas id="myCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+		</div>
+	</body>
+</html>
+
+		
+	    <script type="text/javascript">
+	    	
+	    		var apigClient = apigClientFactory.newClient();
+	    			for(i=0;i<6;i++){
+	    			var formData = {
+	    				'sno': i
+	    			};
+	    			console.log("At 1");
+	    			console.log(formData);
+	    			var params = {
+	    				'sno': i
+	    			};
+	    			console.log("At 1.5");	    			
+	    			console.log(params);
+	    			var body = {
+	    				//'sno': $('input[name=sno]').val()
+	    			};
+	    			var additionalParams = {
+	    				headers : {
+
+	    				},
+	    				queryParams: {
+	    					'sno': i
+	    				}
+	    			};
+	    			console.log(additionalParams);
+	    			console.log("At 1.75");
+
+		    		apigClient.directiondetailsGet(params, body, additionalParams).then(function(result){
+		    			var c = document.getElementById("myCanvas");
+					var ctx = c.getContext("2d");
+
+					ctx.textAlign = "start";      
+					ctx.fillText("textAlign=start", 0, 0);	
+					ctx.moveTo(0,0);
+					for (i=0;i<result.length;i++)
+					{
+						ctx.textAlign = "left";      
+						ctx.fillText("textAlign=left", result.data.Item.x, result.data.Item.y);
+						ctx.linecap ="round";
+						ctx.lineTo(result.data.Item.x,result.data.Item.y);
+						ctx.stroke();
+					}
+	    			console.log("At 2");
+	    			console.log(result.data);
+	    			dataResult = result.data;
+	    			var resultStr = 'Sno: '+result.data.Item.sno+'<br/>'+result.data.Item.currdirection;
+	    			console.log(resultStr);
+	    			$('#results').html(resultStr);
+	    		}).catch(function(result){
+	    			console.log("error");
+
+	    			
+	    		});
+
+	    	}
+	    	
+	    </script>

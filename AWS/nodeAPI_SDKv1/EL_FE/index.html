@@ -1,0 +1,186 @@
+<html>
+<head>
+		<!--<meta http-equiv="refresh" content="" > -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+		<script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+	    <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+	    <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+	    <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+	    <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+	    <script type="text/javascript" src="lib/url-template/url-template.js"></script>
+	    <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+	    <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+	    <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+	    <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+	    <script type="text/javascript" src="apigClient.js"></script>
+
+<style type="text/css">
+
+tr{
+	text-align: left;
+
+}
+td{
+	height: 400px;
+	width: 500px;
+	text-align: left;
+}
+			
+/*#results_1{
+	width: 50%;
+	height: 50%;
+	float: left;
+	position: fixed;
+	top:21%;
+	
+}
+
+#results_2 {
+	top:10%;
+	width: 50%;
+	height: 50%;
+	float: right;
+
+}
+
+#results_3 {
+	height: 40%;
+	width: 100%;
+	bottom: 0;
+	position:fixed;
+	float:left;
+}
+
+#results_4 {
+	height: 40%;
+	width: 50%;
+	bottom: 0;
+	position:fixed;
+	float:right;
+}
+
+.topnav {
+	overflow: hidden;
+	float: left;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    height:10%;
+    width: 100%;
+}*/
+
+</style>
+</head>
+	<body style="font-family: Arial">
+		<div class="topnav" id="myTopnav">
+  <h1 align="center">EXPRESS LOGIC</h1>
+  <br>
+ 
+</div>
+<table width="100%" align="center"><tr><td>
+		<h3>Explanation</h3>
+		<div id="results_1"></div></td>
+<td>		<h3>Details</h3>
+		<div id="results_2"></div></td></tr>
+<tr><td>		<h3>Plot</h3>
+		<div id="results_3"><canvas id="myCanvas" width=500% height=300% style="border:1px solid #000000;"></canvas></div></td>
+<td>		<div id ="results_4"></div>
+		<div id="displacement_1"></div></td></tr>
+		</table>
+	</body>
+</html>
+
+		
+	    <script type="text/javascript">
+	    	
+	    		var apigClient = apigClientFactory.newClient();
+	    			
+	    			var formData = {
+	    				'sno': 1
+	    			};
+	    			
+	    			var params = {
+	    				'sno': 1
+	    			};
+	    			
+	    			var body = {
+	    				//'sno': $('input[name=sno]').val()
+	    			};
+	    			var additionalParams = {
+	    				headers : {
+
+	    				},
+	    				queryParams: {
+	    					'sno': 1
+	    				}
+	    			};
+	    			
+	    			var c = document.getElementById("myCanvas");
+					var ctx = c.getContext("2d");
+					ctx.scale(5,5);
+					ctx.textAlign = "start";      
+					ctx.fillText("textAlign=start", 100, 100);	
+						ctx.moveTo(100,100);
+		    	
+		    	apigClient.directiondetailsGet(params, body, additionalParams).then(function(result){
+	    			//console.log("At 2");
+	    			var resultStr=''
+	    			for(i=0; i<=result.data.Count;i++){
+		    			console.log(i);
+		    			console.log(result.data.Items[i]);
+		    			dataResult = result.data;
+
+		    			ctx.textAlign = "left";      
+						ctx.fillText(i, result.data.Items[i].x, result.data.Items[i].y);
+						ctx.linecap ="round";
+						ctx.lineTo(result.data.Items[i].x,result.data.Items[i].y);
+						ctx.stroke();
+						var x1 = parseInt(result.data.Items[i].x);
+						var y1 = parseInt(result.data.Items[i].y);
+		    			resultStr = resultStr + 'X ='+result.data.Items[i].x+", Y ="+result.data.Items[i].y+"<br/>";
+		    			displacement = Math.sqrt(Math.pow(x1, 2)+Math.pow(y1, 2));
+		    			answer = "Displacement is "+displacement;
+		    			console.log(resultStr);
+		    			$('#results_2').html(resultStr);
+		    			$('#displacement_1').html(answer);
+
+	    			}
+
+	    		}).catch(function(result){
+	    			console.log("error");
+	    		});
+				
+	    		
+	    		apigClient.getstatementsGet(params, body, additionalParams).then(function(result){
+	    			var resultStr=''
+	    			for(i=0; i<=result.data.Count;i++){
+		    			console.log(i);
+		    			console.log(result.data.Items[i]);
+	    				dataResult = result.data;
+	    				resultStr = resultStr+result.data.Items[i].sentence+'<br/>';
+	    				console.log(resultStr);
+	    				
+	    				$('#results_1').html(resultStr);
+	    			}
+	    		}).catch(function(result){
+	    			console.log("error");
+	    		});
+
+	    		apigClient.findlogicGet(params, body, additionalParams).then(function(result){
+	    			var resultStr=''
+	    			for(i=0; i<=result.data.Count;i++){
+		    			console.log(i);
+		    			console.log(result.data.Items[i]);
+	    				dataResult = result.data;
+	    				resultStr = resultStr + 'Name: '+result.data.Items[i].name+'<br/>';
+	    				console.log(resultStr);
+	    				$('#results_2').html(resultStr);
+	    			}
+	    		}).catch(function(result){
+	    			console.log("error");
+	    		});
+
+	    	
+	    </script>

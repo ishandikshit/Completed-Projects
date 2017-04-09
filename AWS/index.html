@@ -1,0 +1,96 @@
+<html>
+<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+		<script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+	    <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+	    <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+	    <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+	    <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+	    <script type="text/javascript" src="lib/url-template/url-template.js"></script>
+	    <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+	    <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+	    <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+	    <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+	    <script type="text/javascript" src="apigClient.js"></script>
+</head>
+	<body>
+		<h2>ExplainLogic!</h2>
+		<form>
+		<ul>
+			<li><label>S. No. </label><input type="text" name="sno" placeholder="S. No." /></li>
+			<li>
+				<input type="submit" name="Submit" />
+			</li>
+		</ul>
+		</form>
+		<div id="results_1"></div><br>
+		<div id="results_2"></div><br>
+		<div id="results_3"></div><br>
+	</body>
+</html>
+
+		
+	    <script type="text/javascript">
+	    	
+	    		var apigClient = apigClientFactory.newClient();
+	    			
+	    			var formData = {
+	    				'sno': 1
+	    			};
+	    			console.log("At 1");
+	    			console.log(formData);
+	    			var params = {
+	    				'sno': 1
+	    			};
+	    			console.log("At 1.5");	    			
+	    			console.log(params);
+	    			var body = {
+	    				//'sno': $('input[name=sno]').val()
+	    			};
+	    			var additionalParams = {
+	    				headers : {
+
+	    				},
+	    				queryParams: {
+	    					'sno': 1
+	    				}
+	    			};
+	    			console.log(additionalParams);
+	    			console.log("At 1.75");
+
+		    	apigClient.directiondetailsGet(params, body, additionalParams).then(function(result){
+	    			console.log("At 2");
+	    			console.log(result.data);
+	    			dataResult = result.data;
+	    			var resultStr = 'Sno: '+result.data.Item.sno+'<br/>'+result.data.Item.currdirection;
+	    			console.log(resultStr);
+	    			$('#results_1').html(resultStr);
+	    		}).catch(function(result){
+	    			console.log("error");
+	    		});
+
+	    		apigClient.getstatementsGet(params, body, additionalParams).then(function(result){
+	    			console.log("At 2");
+	    			console.log(result.data);
+	    			dataResult = result.data;
+	    			var resultStr = 'Sno: '+result.data.Item.sno+'<br/>';
+	    			console.log(resultStr);
+	    			$('#results_2').html(resultStr);
+	    		}).catch(function(result){
+	    			console.log("error");
+	    		});
+
+	    		apigClient.findlogicGet(params, body, additionalParams).then(function(result){
+	    			console.log("At 2");
+	    			console.log(result.data);
+	    			dataResult = result.data;
+	    			var resultStr = 'Sno: '+result.data.Item.sno+'<br/>';
+	    			console.log(resultStr);
+	    			$('#results_3').html(resultStr);
+	    		}).catch(function(result){
+	    			console.log("error");
+	    		});
+
+	    	
+	    </script>
