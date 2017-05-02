@@ -1,0 +1,6 @@
+grammar Hello;
+package org.bagel.test;
+
+public class Test {
+
+}

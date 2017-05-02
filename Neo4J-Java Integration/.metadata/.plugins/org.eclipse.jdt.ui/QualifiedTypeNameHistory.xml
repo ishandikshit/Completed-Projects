@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.neo4j.graphdb.factory.GraphDatabaseFactory"/>
+<fullyQualifiedTypeName name="org.neo4j.cypher.internal.compiler.v1_9.symbols.NodeType"/>
+<fullyQualifiedTypeName name="Front.NodeType"/>
+<fullyQualifiedTypeName name="org.neo4j.graphdb.RelationshipType"/>
+<fullyQualifiedTypeName name="org.neo4j.graphdb.GraphDatabaseService"/>
+</qualifiedTypeNameHistroy>
